@@ -37,7 +37,8 @@ def handle_response(text:str)->str:
     elif '2' == text:
         return select_info_news(text)
     elif 'sobre' == text:
-        return f'Repositório do projeto: \nApi do IBGE: https://servicodados.ibge.gov.br/api/docs/noticias?versao=3#api-_'
+        return (f'Repositório do projeto: https://github.com/Fabio-luiz-sousa/bot_telegram_noticias_ibge \n'
+    'Api do IBGE: https://servicodados.ibge.gov.br/api/docs/noticias?versao=3#api-_')
     
 async def handle_message(update: Update,context:ContextTypes.DEFAULT_TYPE):
     message_type = update.message.chat.type
