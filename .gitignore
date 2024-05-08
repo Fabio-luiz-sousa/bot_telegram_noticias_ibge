@@ -1,3 +1,5 @@
 data
 container_mysql/mysql_container
 container_mysql/.env
+*/__pycache__
+*/.env
