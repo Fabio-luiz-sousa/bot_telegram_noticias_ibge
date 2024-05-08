@@ -23,23 +23,21 @@ logging.basicConfig(
 
 # Commands
 async def start_command(update: Update,context:ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Olá! Quais notícias você quer ler ?\nDe hoje - digite 1\nDa semana - digite 2\nDo mês - digite 3\n'
-                                    'Do ano - digite 4')
+    await update.message.reply_text('Olá! Quais notícias você quer ler ?\nDe hoje - digite 1\nDa semana - digite 2')
 
 async def help_command(update: Update,context:ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Qual ajuda você está precisando ?')
+    await update.message.reply_text('Qual ajuda você está precisando ?\n'
+                                    'Sobre o projeto - digite sobre')
 
 
 #Responses
 def handle_response(text:str)->str:
     if '1' == text:
         return select_info_news(text)
-    if '2' == text:
+    elif '2' == text:
         return select_info_news(text)
-    if '3' == text:
-        return select_info_news(text)
-    if '4' == text:
-        return select_info_news(text)
+    elif 'sobre' == text:
+        return f'Repositório do projeto: \nApi do IBGE: https://servicodados.ibge.gov.br/api/docs/noticias?versao=3#api-_'
     
 async def handle_message(update: Update,context:ContextTypes.DEFAULT_TYPE):
     message_type = update.message.chat.type

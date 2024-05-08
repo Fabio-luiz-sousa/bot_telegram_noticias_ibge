@@ -11,8 +11,7 @@ def select_info_news(option):
                 def select_news_today():
                     sql = (
                         'SELECT * FROM ibge_noticias '
-                        f'WHERE DAY(data_publicacao) = {datetime.now().day} '
-                        f'AND MONTH(data_publicacao) = {datetime.now().month}'
+                        f'WHERE DAY(data_publicacao) = {datetime.now().day} AND MONTH(data_publicacao) = {datetime.now().month}'
                     )
                     cursor.execute(sql)
                     news_today = cursor.fetchall()
@@ -21,16 +20,17 @@ def select_info_news(option):
                         for id_news,titulo,introducao,data_publicacao,editorias,link in news_today:
                             news_list.append(f'*********\ndata publicação: {data_publicacao}\n\n{titulo}\n\n{introducao}\n{link}\n*********\n')
                         news_list = '\n'.join(news_list)
+                        print(news_list)
                     else:
-                        news_today  = 'Não há notícias para hoje ainda!'
-                    return news_today
+                        news_list  = 'Não há notícias para hoje ainda!'
+                    return news_list
                 return select_news_today()
             elif option == '2':
                 # função que seleciona as noticas da semana
                 def select_news_week():
                     sql = (
                         'SELECT * FROM ibge_noticias '
-                        f'WHERE WEEK(data_publicacao) = {datetime.now().strftime('%W')}'
+                        f'WHERE WEEK(data_publicacao) = {datetime.now().strftime('%U')}'
                     )
                     cursor.execute(sql)
                     news_week = cursor.fetchall()
@@ -39,26 +39,12 @@ def select_info_news(option):
                         for id_news,titulo,introducao,data_publicacao,editorias,link in news_week:
                             news_list.append(f'*********\ndata publicação: {data_publicacao}\n\n{titulo}\n\n{introducao}\n{link}\n*********\n')
                         news_list = '\n'.join(news_list)
+                        print(news_list)
                     else:
                         news_list = 'Não há noticias para essa semana ainda!'
                     return news_list
-                return select_news_week()
-            elif option == '3':
+                return select_news_week()       
 
-                def select_news_month():
-                    sql = (
-                        'SELECT * FROM ibge_noticias '
-                        f'WHERE MONTH(data_publicacao) = {datetime.now().month}'
-                    )
-                    cursor.execute(sql)
-                    news_month = cursor.fetchall()
-                    news_list = list()
-                    if len(news_month)!=0:
-                        for id_news,titulo,introducao,data_publicacao,editorias,link in news_month:
-                            news_list.append(f'*********\ndata publicação: {data_publicacao}\n\n{titulo}\n{link}\n*********\n')
-                        news_list = '\n'.join(news_list)
-                    else:
-                        news_list = 'Não há noticias para esse mês ainda!'
-                    return news_list
-                return select_news_month()
+                
+
                 
