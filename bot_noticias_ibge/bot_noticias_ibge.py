@@ -6,6 +6,8 @@ import logging
 import sys
 sys.path.append('./insert_info_db/')
 from select_info import select_info_news
+
+
 dotenv.load_dotenv()
 
 TOKEN = os.environ['TOKEN']
@@ -21,9 +23,8 @@ logging.basicConfig(
 
 # Commands
 async def start_command(update: Update,context:ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Olá! Quais notícias você quer ler ?\n \
-                                    De hoje - digite 1\n Da semana - digite 2\n Do mês - digite 3\n \
-                                    Do ano - digite 4')
+    await update.message.reply_text('Olá! Quais notícias você quer ler ?\nDe hoje - digite 1\nDa semana - digite 2\nDo mês - digite 3\n'
+                                    'Do ano - digite 4')
 
 async def help_command(update: Update,context:ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('Qual ajuda você está precisando ?')
